@@ -13,8 +13,9 @@ crash.*.log
 .terraform/
 .terraform.lock.hcl
 
-terraform.tfvars
-terraform.tfvars.json
+*.tfvars
+*.tfvars.json
+!terraform.tfvars
 *.auto.tfvars
 *.auto.tfvars.json
 
