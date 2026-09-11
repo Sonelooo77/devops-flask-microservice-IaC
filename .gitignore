@@ -1,0 +1,21 @@
+# Terraform local state
+
+*.tfstate
+*.tfstate.*
+
+# Logs/crash
+
+crash.log
+crash.*.log
+
+# Initialization and variables files
+
+.terraform/
+.terraform.lock.hcl
+
+terraform.tfvars
+terraform.tfvars.json
+*.auto.tfvars
+*.auto.tfvars.json
+
+*.tfplan
