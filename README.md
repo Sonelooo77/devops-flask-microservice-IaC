@@ -17,5 +17,6 @@ This architecture leverages serverless container execution:
  │   │  - FQDN: [http://app-devops-sonelo-77.northeurope]    │ │
  │   └───────────────────────────────────────────────────────┘ │
  └─────────────────────────────────────────────────────────────┘
- 
+```
+
 This architecture is designed to integrate directly with automated CD pipelines for GitOps workflows.
