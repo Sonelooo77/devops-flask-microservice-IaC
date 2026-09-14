@@ -39,21 +39,29 @@ jobs:
             - name: Smoke test (check health endpoint)
               
               run: |
-                # URL retrieval from terraform outputs
-                APP_URL=$(terraform output -raw web_app_url)
-                echo "Testing ${APP_URL}/health"
+                # URL and Port retrieval from terraform outputs & variables
+                APP_URL=$(terraform output -raw web_app_health_url)
+                echo "Testing ${APP_URL}"
 
-                # Test loop, tries each 5 sec 20 times
-                for i in {1..12}; do
-                    if curl -s -f "${APP_URL}/health" | grep -q "UP"; then
-                        echo "Smoke test passed !"
+                # Test loop
+                MAX_TRIES=12
+                WAIT_TO_RETRY=5
+
+                for i in $(seq 1 $MAX_RETRIES); do
+                    echo "--| Attempt $i/$MAX_TRIES |--"
+
+                    RESPONSE=$(curl -s --connect-timeout 3 --max-time 5 "$APP_URL" || true)
+                    echo "Response: ${RESPONSE}
+
+                    if echo "$RESPONSE" | grep -q '"status":[[:space:]]UP"'; then
+                        echo "Smoke test passed successfully"
                         exit 0
                     fi
-                    echo "Waiting for app startup ($i/12 tries)..."
-                    sleep 5
+                    echo "Service not ready yet. Retrying in ${WAIT_TO_RETRY}s..."
+                    sleep $SLEEP_SECONDS
                 done
 
-                echo "Test failed : Timed out."
+                echo "Error : Failed health endpoint check after $MAX_TRIES attempts."
                 exit 1
 
             - name: Terraform Destroy
