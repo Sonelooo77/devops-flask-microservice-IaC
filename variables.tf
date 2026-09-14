@@ -6,6 +6,6 @@ variable "image_tag" {
 
 variable "port" {
     description = "Port number"
-    type = int
+    type = number
     default = "5000"
 }
