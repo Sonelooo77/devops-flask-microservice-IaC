@@ -12,6 +12,7 @@ The declared infrastructure runs entirely on serverless container instances to m
 - Region: North Europe (northeurope)
 - Compute: Azure Container Instances (ACI)
 - Network: Public IP with custom DNS label and exposed port for HTTP traffic
+- State Management: Remote backend hosted on Azure Blob Storage with automated blob lease locking
 
 ## Continuous Delivery Pipeline
 
