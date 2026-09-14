@@ -31,7 +31,7 @@ resource "azurerm_container_group" "aci" {
     memory = "1.0"
 
     ports {
-      port     = ${var.port}
+      port     = var.port
       protocol = "TCP"
     }
   }
