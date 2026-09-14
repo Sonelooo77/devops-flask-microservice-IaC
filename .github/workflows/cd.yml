@@ -27,8 +27,24 @@ jobs:
             TF_VAR_dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
 
         steps:
+
             - name : Check out infrastructure code
               uses: actions/checkout@v4
+
+            - name: Pre-flight check Docker Hub image
+              run: |
+                IMAGE="sonelo77/devops-flask-api:$(grep -E '^image_tag' terraform.tfvars | cut -d'"' -f2)"
+                echo "Checking availability of ${IMAGE}..."
+                    
+                for i in {1..6}; do
+                    if docker manifest inspect "${IMAGE}" > /dev/null 2>&1; then
+                    echo "Image confirmed on Docker Hub!"
+                    break
+                    fi
+                    echo "Image not fully available yet. Retrying in 10s ($i/6)..."
+                    sleep 10
+                done
+
 
             - name: Set up Terraform
               uses: hashicorp/setup-terraform@v3
