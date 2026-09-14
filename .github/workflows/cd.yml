@@ -51,7 +51,7 @@ jobs:
                     echo "--| Attempt $i/$MAX_TRIES |--"
 
                     RESPONSE=$(curl -s --connect-timeout 3 --max-time 5 "$APP_URL" || true)
-                    echo "Response: ${RESPONSE}
+                    echo "Response: ${RESPONSE}"
 
                     if echo "${RESPONSE}" | grep -q "UP"; then
                         echo "Smoke test passed successfully"
