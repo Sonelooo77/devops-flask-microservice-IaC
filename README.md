@@ -1,5 +1,7 @@
 # Azure Infrastructure with Terraform #
 
+![CD Pipeline](https://github.com/Sonelooo77/devops-flask-microservice-IaC/actions/workflows/cd.yml/badge.svg)
+
 This repository provisions an automated Cloud infrastructure on **Microsoft Azure** using **Terraform** in order to deploy my  containerized web microservice and other potential microservices. This deployment is carried out using **Azure Container Instances (ACI)** in an isolated Resource Group.
 
 ## Architectural Overview
