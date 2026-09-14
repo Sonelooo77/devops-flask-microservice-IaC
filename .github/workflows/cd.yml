@@ -4,6 +4,12 @@ on:
     push:
         branches: [ "main" ]
     workflow_dispatch:
+        inputs:
+            teardown:
+                description: "Destroy infrastructure after testing ?"
+                type: boolean
+                required: true
+                default: true
 
 permissions:
     contents: read
@@ -65,6 +71,6 @@ jobs:
                 exit 1
 
             - name: Terraform Destroy
-              # Destroy even if test failed
-              if: always() 
+              # Destroy if asked to or after an automatic check
+              if: always() && (github.event_name == 'push || inputs.teardow == true')
               run: terraform destroy -auto-approve
