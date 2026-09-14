@@ -72,5 +72,5 @@ jobs:
 
             - name: Terraform Destroy
               # Destroy if asked to or after an automatic check
-              if: always() && (github.event_name == 'push || inputs.teardow == true')
+              if: always() && (github.event_name == 'push' || inputs.teardown == true)
               run: terraform destroy -auto-approve
