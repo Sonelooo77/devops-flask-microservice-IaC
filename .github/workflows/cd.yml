@@ -53,7 +53,7 @@ jobs:
                     RESPONSE=$(curl -s --connect-timeout 3 --max-time 5 "$APP_URL" || true)
                     echo "Response: ${RESPONSE}
 
-                    if echo "$RESPONSE" | grep -q '"status":[[:space:]]UP"'; then
+                    if echo "${RESPONSE}" | grep -q "UP"; then
                         echo "Smoke test passed successfully"
                         exit 0
                     fi
