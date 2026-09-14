@@ -37,7 +37,3 @@ resource "azurerm_container_group" "aci" {
   }
 }
 
-output "web_app_url" {
-  description = "URL publique de l'API"
-  value       = "http://${azurerm_container_group.aci.fqdn}"
-}

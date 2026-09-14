@@ -1,0 +1,10 @@
+output "debug_target_image" {
+    description = "Used docker image and tag"
+    value = "sonelo77/devops-flask-api:${var.image_tag}"
+
+}
+
+output "web_app_url" {
+  description = "APP public URL"
+  value       = "http://${azurerm_container_group.aci.fqdn}"
+}
