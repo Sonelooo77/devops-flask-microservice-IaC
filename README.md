@@ -13,6 +13,7 @@ The declared infrastructure runs entirely on serverless container instances to m
 - Compute: Azure Container Instances (ACI)
 - Network: Public IP with custom DNS label and exposed port for HTTP traffic
 - State Management: Remote backend hosted on Azure Blob Storage with automated blob lease locking
+- Container Registry: Azure Container Registry (ACR Basic) with secure credential integration for ACI pulls
 
 ## Continuous Delivery Pipeline
 
