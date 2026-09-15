@@ -1,6 +1,8 @@
+data "azurerm_client_config" "current" {}
+
 import {
   to = azurerm_container_registry.acr
-  id = "/subscriptions/3f1b9162-df76-414a-ae4f-bb40ff6d3216/resourceGroups/rg-terraform-state/providers/Microsoft.ContainerRegistry/registries/acrkindellab77"
+  id = "/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/rg-terraform-state/providers/Microsoft.ContainerRegistry/registries/acrkindellab77"
 }
 
 resource "azurerm_container_registry" "acr" {
