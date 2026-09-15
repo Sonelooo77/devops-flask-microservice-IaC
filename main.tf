@@ -18,6 +18,11 @@ provider "azurerm" {
   features {}
 }
 
+data "azurerm_container_registry" "acr" {
+  name                = "acrkindellab77"
+  resource_group_name = "rg-terraform-state"
+}
+
 resource "azurerm_resource_group" "rg" {
   name     = "rg-devops-lab-test"
   location = "northeurope"
@@ -33,11 +38,10 @@ resource "azurerm_container_group" "aci" {
 
 
   image_registry_credential {
-    server   = azurerm_container_registry.acr.login_server
-    username = azurerm_container_registry.acr.admin_username
-    password = azurerm_container_registry.acr.admin_password
+    server   = data.azurerm_container_registry.acr.login_server
+    username = data.azurerm_container_registry.acr.admin_username
+    password = data.azurerm_container_registry.acr.admin_password
   }
-
 
   container {
     name   = "flask-api"
