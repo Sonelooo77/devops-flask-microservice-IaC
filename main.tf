@@ -45,7 +45,7 @@ resource "azurerm_container_group" "aci" {
 
   container {
     name   = "flask-api"
-    image  = "${azurerm_container_registry.acr.login_server}/devops-flask-api:${var.image_tag}"
+    image  = "${data.azurerm_container_registry.acr.login_server}/devops-flask-api:${var.image_tag}"
     cpu    = "0.5"
     memory = "1.0"
 
