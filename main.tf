@@ -31,9 +31,17 @@ resource "azurerm_container_group" "aci" {
   dns_name_label      = "app-devops-sonelo-77"
   os_type             = "Linux"
 
+
+  image_registry_credential {
+    server   = azurerm_container_registry.acr.login_server
+    username = azurerm_container_registry.acr.admin_username
+    password = azurerm_container_registry.acr.admin_password
+  }
+
+
   container {
     name   = "flask-api"
-    image  = "sonelo77/devops-flask-api:${var.image_tag}"
+    image  = "${azurerm_container_registry.acr.login_server}/devops-flask-api:${var.image_tag}"
     cpu    = "0.5"
     memory = "1.0"
 

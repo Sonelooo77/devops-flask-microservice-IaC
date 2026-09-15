@@ -13,3 +13,7 @@ output "web_app_health_url" {
   description = "Ready-to-use full URL for CD smoke test"
   value = "http://${azurerm_container_group.aci.fqdn}:${var.port}/health"
 }
+
+output "acr_login_server" {
+  value = azurerm_container_registry.acr.login_server
+}
